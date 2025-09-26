@@ -1,0 +1,3 @@
+# This file ensures that the temp_chunks directory is preserved in git
+# The directory is used for temporary storage of audio chunks during processing
+# The contents of this directory are ignored via .gitignore

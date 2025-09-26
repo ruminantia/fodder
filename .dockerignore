@@ -1,0 +1,146 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+.mypy_cache/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-*
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+docker-compose.*.yml
+
+# Git
+.git/
+.gitignore
+*.patch
+
+# Logs
+*.log
+logs/
+
+# Temporary files (keep directory structure but ignore contents)
+temp_chunks/*
+!temp_chunks/.gitkeep
+downloads/*
+!downloads/.gitkeep
+transcriptions/*
+!transcriptions/.gitkeep
+
+# Configuration files
+.env
+.envrc
+.env.*
+.credentials
+
+# Scripts
+run-docker.sh
+*.sh
+
+# Documentation
+docs/
+README.md
+LICENSE
+*.md
+*.rst
+*.txt
+!requirements.txt
+
+# Virtual environment
+venv/
+
+# Local development
+local/
+.devcontainer/
+
+# Backup files
+*.bak
+*.backup
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+
+# Development files
+*.egg-info/
+build/
+dist/
