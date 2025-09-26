@@ -98,12 +98,19 @@ python main.py
 - **WAV** (recommended for best quality)
 - **MP3**, **OGG**, **FLAC**, **AAC**, **M4A**, **WMA**
 
-### Example Output
+## 🎥 Demonstration
+<video src="demo.mp4" controls width="100%"></video>
+
+<audio src="demo.ogg" controls></audio>
+
 ```
-(1/3) This is the transcription of the first 20-second chunk...
-(2/3) Continuing with context from the previous chunk...
-(3/3) Final chunk with complete narrative context...
+This is a clear, high-quality audio recording of a male speaker. He has a neutral, conversational tone and speaks at a moderate pace.
+
+He states, "I'm just uh demonstrating fodder for my GitHub README." The word "uh" is audible, indicating a slight hesitation in his speech. The content of his statement is specific to the software development community, as a "GitHub README" is a standard file used to describe a project on the GitHub platform. The background is very quiet, with only a faint, low-level hum barely perceptible, suggesting a typical indoor recording environment.
 ```
+
+### Analysis
+This demonstrates Fodder's ability to accurately transcribe spoken content, including natural speech patterns like the hesitation marker "uh". The transcription captures the conversational tone and context perfectly.
 
 ## 🏗️ Project Structure
 
