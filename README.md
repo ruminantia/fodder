@@ -99,9 +99,9 @@ python main.py
 - **MP3**, **OGG**, **FLAC**, **AAC**, **M4A**, **WMA**
 
 ## 🎥 Demonstration
-<video src="demo.mp4" controls width="100%"></video>
+<video src="./demo.mp4" width="320" height="240" controls></video>
 
-<audio src="demo.ogg" controls></audio>
+<audio src="demo.wav" controls></audio>
 
 ```
 This is a clear, high-quality audio recording of a male speaker. He has a neutral, conversational tone and speaks at a moderate pace.
