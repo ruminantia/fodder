@@ -69,14 +69,19 @@ async def on_message(message):
                     # Transcribe all chunks with context passing between them
                     full_transcription = await transcriber.transcribe_chunks(chunks)
 
-                    # Save transcription to file with timestamp
-                    output_dir = "fodder"
+                    # Save transcription to file with message ID and date-based structure
+                    now = datetime.now()
+                    year = now.strftime("%Y")
+                    month = now.strftime("%m")
+                    day = now.strftime("%d")
+
+                    # Create year/month/day directory structure
+                    output_dir = f"fodder/{year}/{month}/{day}"
                     if not os.path.exists(output_dir):
                         os.makedirs(output_dir)
 
-                    now = datetime.now()
-                    timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
-                    output_filename = f"{output_dir}/{timestamp}.txt"
+                    # Use original message ID as filename
+                    output_filename = f"{output_dir}/{message.id}.txt"
 
                     with open(output_filename, "w") as f:
                         f.write(full_transcription)
