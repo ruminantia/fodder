@@ -61,15 +61,9 @@ docker compose -f docker-compose.dev.yml exec discord-bot bash
 ```
 src/
 ├── __init__.py              # Package initialization
-├── discord_bot.py           # Discord bot implementation
+├── discord.py               # Discord bot implementation
 ├── transcriber.py           # Audio transcription logic
 └── audio_utils.py           # Audio processing utilities
-
-tests/
-├── __init__.py
-├── test_discord_bot.py
-├── test_transcriber.py
-└── test_audio_utils.py
 
 docs/                        # Documentation
 scripts/                     # Development scripts
@@ -77,7 +71,7 @@ scripts/                     # Development scripts
 
 ### Core Components
 
-#### Discord Bot (`discord_bot.py`)
+#### Discord Bot (`discord.py`)
 - **Purpose**: Handles Discord API interactions
 - **Key Classes**: `discord.Client` extension
 - **Main Features**: Message handling, file processing, error management
@@ -318,7 +312,7 @@ feat: add support for WEBM audio format
 fix: resolve memory leak in audio chunking
 docs: update API documentation
 test: add integration tests for transcriber
-refactor: improve error handling in discord_bot
+refactor: improve error handling in discord.py
 ```
 
 ## Debugging and Troubleshooting
@@ -415,7 +409,7 @@ def check_memory_usage():
 4. **Test with sample files**
 
 #### Example: Adding Bot Command
-1. **Add command handler** in `discord_bot.py`
+1. **Add command handler** in `discord.py`
 2. **Implement command logic**
 3. **Add help text** and documentation
 4. **Test command functionality**

@@ -260,7 +260,7 @@ echo "✅ Configuration validated successfully"
 Add a health check to verify configuration:
 
 ```python
-# In discord_bot.py
+# In discord.py
 @client.event
 async def on_message(message):
     if message.content == "!health":
@@ -393,7 +393,7 @@ logger.addHandler(handler)
 
 #### Custom Metrics
 ```python
-# In discord_bot.py
+# In discord.py
 import time
 
 class Metrics:

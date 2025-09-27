@@ -7,12 +7,12 @@ from dotenv import load_dotenv
 sys.path.append("src")
 
 # Load environment variables from .env file
-# This must happen before importing discord_bot to ensure variables are available
+# This must happen before importing discord to ensure variables are available
 load_dotenv()
 
 # Import the Discord bot module after environment is loaded
 # This ensures DISCORD_BOT_TOKEN is available when the module is imported
-from src import discord_bot
+from src import discord
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
     The bot will run until stopped by external signal (Ctrl+C) or error.
     """
     # Validate that Discord bot token is available
-    if not discord_bot.DISCORD_BOT_TOKEN:
+    if not discord.DISCORD_BOT_TOKEN:
         raise ValueError(
             "DISCORD_BOT_TOKEN not found in environment variables.\n"
             "Please ensure your .env file contains a valid Discord bot token."
@@ -35,7 +35,7 @@ def main():
 
     # Start the Discord bot
     # This begins the event loop and connects to Discord's gateway
-    discord_bot.client.run(discord_bot.DISCORD_BOT_TOKEN)
+    discord.client.run(discord.DISCORD_BOT_TOKEN)
 
 
 if __name__ == "__main__":

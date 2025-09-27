@@ -127,7 +127,7 @@ He states, "I'm just uh demonstrating fodder for my GitHub README." The word "uh
 ```
 fodder/
 ├── src/                    # Source code
-│   ├── discord_bot.py      # Discord bot implementation
+│   ├── discord.py          # Discord bot implementation
 │   ├── transcriber.py      # Audio transcription logic
 │   └── audio_utils.py      # Audio processing utilities
 ├── docs/                   # Comprehensive documentation

@@ -346,7 +346,7 @@ ping dashscope-intl.aliyuncs.com
 
 ### Performance Profiling
 ```python
-# Add to discord_bot.py for performance analysis
+# Add to discord.py for performance analysis
 import time
 import logging
 
