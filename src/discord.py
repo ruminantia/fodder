@@ -55,7 +55,7 @@ async def on_message(message):
             if attachment.content_type and attachment.content_type.startswith("audio/"):
                 try:
                     # Add processing reaction
-                    await message.add_reaction("⏳")  # Hourglass emoji
+                    await message.add_reaction("👂")  # Ear emoji
 
                     # Download the audio file to local storage
                     audio_path = f"downloads/{attachment.filename}"
@@ -161,8 +161,7 @@ async def on_message(message):
 
                         # Send header message with original message reference
                         await transcriptions_channel.send(
-                            f"**Transcription from {message.author.display_name}**\n"
-                            f"Original message: {original_message_link}\n"
+                            f"Original message from {message.author.display_name}: {original_message_link}\n"
                             f"Audio file: {attachment.filename}\n"
                             f"Timestamp: {now.strftime('%Y-%m-%d %H:%M:%S')}\n"
                             f"---"
@@ -199,8 +198,8 @@ async def on_message(message):
                                 os.remove(chunk_path)
 
                     # Remove processing reaction and add success reaction
-                    await message.remove_reaction("⏳", client.user)
-                    await message.add_reaction("✅")  # Checkmark emoji
+                    await message.remove_reaction("👂", client.user)
+                    await message.add_reaction("📄")  # Document emoji
 
                 except Exception as e:
                     # Handle any errors during audio processing
