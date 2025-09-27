@@ -7,7 +7,7 @@
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Qwen](https://img.shields.io/badge/Qwen3--Omni-AI%20Transcription-blue?style=for-the-badge)
 
-A sophisticated Discord bot for high-quality audio transcription using state-of-the-art AI with intelligent chunk-aware processing and context preservation. Features multi-container volume sharing for easy integration with other services.
+A sophisticated Discord bot for high-quality audio transcription using state-of-the-art AI with intelligent chunk-aware processing and context preservation. Features separate input/output channels, reaction-based status updates, and multi-container volume sharing for easy integration with other services.
 
 [📚 Documentation](docs/README.md)
 
@@ -28,7 +28,8 @@ A sophisticated Discord bot for high-quality audio transcription using state-of-
 - **Quality Optimization**: WAV processing for optimal transcription quality
 
 ### 🤖 Seamless Discord Integration
-- **Channel-Specific**: Dedicated #fodder channel for organized workflow
+- **Dual-Channel Workflow**: Input in #fodder channel, output in #transcriptions channel
+- **Status Reactions**: Real-time emoji reactions (⏳/✅/❌) for processing status
 - **Async Processing**: Non-blocking operations prevent Discord heartbeat issues
 - **Message Splitting**: Automatic handling of Discord's 2000-character limit
 - **Error Resilience**: Continues processing even if individual chunks fail
@@ -91,13 +92,19 @@ python main.py
 ## 📖 Usage
 
 1. **Invite your bot** to a Discord server with appropriate permissions
-2. **Create a dedicated channel** named `#fodder`
+2. **Create two dedicated channels**: `#fodder` (for audio uploads) and `#transcriptions` (for results)
 3. **Upload audio files** to the #fodder channel
-4. **Receive transcriptions** automatically in the same channel
+4. **Receive transcriptions** automatically in the #transcriptions channel with status reactions
 
 ### Supported Audio Formats
 - **WAV** (recommended for best quality)
 - **MP3**, **OGG**, **FLAC**, **AAC**, **M4A**, **WMA**
+
+### Status Reactions
+The bot provides real-time feedback using emoji reactions:
+- **⏳** (Hourglass): Processing started
+- **✅** (Checkmark): Transcription completed successfully
+- **❌** (Red X): Error occurred during processing
 
 ## 🎥 Demonstration
 
@@ -173,6 +180,12 @@ volumes:
 **Access Patterns:**
 - **Discord Bot**: Read/write access to all volumes
 - **Other Containers**: Read-only access to `transcriptions` volume
+
+### Channel Separation
+The bot now uses a dual-channel workflow:
+- **#fodder channel**: Upload audio files here
+- **#transcriptions channel**: Receive completed transcriptions here
+- **Status reactions**: Real-time feedback on processing status
 
 **Testing Volume Access:**
 ```bash

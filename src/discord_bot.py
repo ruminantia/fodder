@@ -36,8 +36,9 @@ async def on_message(message):
     2. Chunking long audio files
     3. Transcribing with context-aware prompts
     4. Saving transcriptions locally
-    5. Sending results back to the channel
-    6. Cleaning up temporary files
+    5. Posting results to #transcriptions channel
+    6. Adding reaction emojis to indicate status
+    7. Cleaning up temporary files
     """
     # Ignore messages from the bot itself
     if message.author == client.user:
@@ -53,6 +54,9 @@ async def on_message(message):
             # Verify this is an audio file before processing
             if attachment.content_type and attachment.content_type.startswith("audio/"):
                 try:
+                    # Add processing reaction
+                    await message.add_reaction("⏳")  # Hourglass emoji
+
                     # Download the audio file to local storage
                     audio_path = f"downloads/{attachment.filename}"
                     if not os.path.exists("downloads"):
@@ -77,13 +81,20 @@ async def on_message(message):
                     with open(output_filename, "w") as f:
                         f.write(full_transcription)
 
-                    # Clean up temporary files to prevent disk space accumulation
-                    if os.path.exists(audio_path):
-                        os.remove(audio_path)
-                    if os.path.exists("temp_chunks"):
-                        for chunk_path in chunks:
-                            if os.path.exists(chunk_path):
-                                os.remove(chunk_path)
+                    # Find the transcriptions channel
+                    transcriptions_channel = discord.utils.get(
+                        message.guild.text_channels, name="transcriptions"
+                    )
+
+                    if not transcriptions_channel:
+                        # Fallback: use the original channel if transcriptions channel doesn't exist
+                        transcriptions_channel = message.channel
+                        print(
+                            "Warning: #transcriptions channel not found, using #fodder channel"
+                        )
+
+                    # Create a reference to the original message
+                    original_message_link = f"https://discord.com/channels/{message.guild.id}/{message.channel.id}/{message.id}"
 
                     # Handle Discord's 2000-character message limit
                     if len(full_transcription) > 2000:
@@ -143,16 +154,61 @@ async def on_message(message):
                                 )
                             ]
 
-                        # Send all message parts to Discord
-                        for msg_content in messages:
-                            await message.channel.send(f"```\n{msg_content}\n```")
+                        # Send header message with original message reference
+                        await transcriptions_channel.send(
+                            f"**Transcription from {message.author.display_name}**\n"
+                            f"Original message: {original_message_link}\n"
+                            f"Audio file: {attachment.filename}\n"
+                            f"Timestamp: {now.strftime('%Y-%m-%d %H:%M:%S')}\n"
+                            f"---"
+                        )
+
+                        # Send all message parts to transcriptions channel
+                        for i, msg_content in enumerate(messages, 1):
+                            if i == 1:
+                                # First part includes the header
+                                await transcriptions_channel.send(
+                                    f"```\n{msg_content}\n```"
+                                )
+                            else:
+                                await transcriptions_channel.send(
+                                    f"```\nPart {i}:\n{msg_content}\n```"
+                                )
                     else:
                         # Single message fits within Discord's limit
-                        await message.channel.send(f"```\n{full_transcription}\n```")
+                        await transcriptions_channel.send(
+                            f"**Transcription from {message.author.display_name}**\n"
+                            f"Original message: {original_message_link}\n"
+                            f"Audio file: {attachment.filename}\n"
+                            f"Timestamp: {now.strftime('%Y-%m-%d %H:%M:%S')}\n"
+                            f"---\n"
+                            f"```\n{full_transcription}\n```"
+                        )
+
+                    # Clean up temporary files to prevent disk space accumulation
+                    if os.path.exists(audio_path):
+                        os.remove(audio_path)
+                    if os.path.exists("temp_chunks"):
+                        for chunk_path in chunks:
+                            if os.path.exists(chunk_path):
+                                os.remove(chunk_path)
+
+                    # Remove processing reaction and add success reaction
+                    await message.remove_reaction("⏳", client.user)
+                    await message.add_reaction("✅")  # Checkmark emoji
 
                 except Exception as e:
                     # Handle any errors during audio processing
                     print(f"Error processing audio attachment: {e}")
+
+                    # Remove processing reaction and add error reaction
+                    try:
+                        await message.remove_reaction("⏳", client.user)
+                        await message.add_reaction("❌")  # Red X emoji
+                    except Exception:
+                        pass  # Ignore errors with reactions if they occur
+
+                    # Send error message to the original channel
                     await message.channel.send(
-                        "Sorry, there was an error processing the audio file."
+                        f"Sorry, there was an error processing the audio file: {str(e)}"
                     )
