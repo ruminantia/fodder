@@ -27,8 +27,8 @@ downloads/*
 !downloads/.gitkeep
 temp_chunks/*
 !temp_chunks/.gitkeep
-transcriptions/*
-!transcriptions/.gitkeep
+fodder/*
+!fodder/.gitkeep
 
 # C extensions
 *.so

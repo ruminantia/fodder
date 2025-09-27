@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 COPY . .
 
 # Create necessary directories
-RUN mkdir -p downloads transcriptions temp_chunks
+RUN mkdir -p downloads fodder temp_chunks
 
 # Set environment variables
 ENV PYTHONPATH=/app

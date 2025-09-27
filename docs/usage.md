@@ -117,10 +117,10 @@ The bot manages files automatically:
 
 ### Accessing Saved Transcriptions
 
-Transcriptions are saved locally in the `transcriptions/` directory with timestamped filenames:
+Transcriptions are saved locally in the `fodder/` directory with timestamped filenames:
 
 ```
-transcriptions/
+fodder/
 ├── 2024-01-15_14-30-25.txt
 ├── 2024-01-15_15-45-12.txt
 └── 2024-01-16_09-15-33.txt
@@ -130,17 +130,17 @@ transcriptions/
 
 #### View Recent Transcriptions
 ```bash
-ls -la transcriptions/
+ls -la fodder/
 ```
 
 #### Search Transcriptions by Date
 ```bash
-find transcriptions/ -name "2024-01-15*" -type f
+find fodder/ -name "2024-01-15*" -type f
 ```
 
 #### Backup Transcriptions
 ```bash
-tar -czf transcriptions-backup-$(date +%Y-%m-%d).tar.gz transcriptions/
+tar -czf transcriptions-backup-$(date +%Y-%m-%d).tar.gz fodder/
 ```
 
 ## Quality Optimization
@@ -215,7 +215,7 @@ Files are processed in upload order. For urgent transcriptions, ensure no other 
 #### Exporting Transcriptions
 ```bash
 # Convert to different formats
-cat transcriptions/2024-01-15_14-30-25.txt > meeting-notes.txt
+cat fodder/2024-01-15_14-30-25.txt > meeting-notes.txt
 ```
 
 #### API Integration (Future)

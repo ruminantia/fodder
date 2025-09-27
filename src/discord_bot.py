@@ -66,7 +66,7 @@ async def on_message(message):
                     full_transcription = await transcriber.transcribe_chunks(chunks)
 
                     # Save transcription to file with timestamp
-                    output_dir = "transcriptions"
+                    output_dir = "fodder"
                     if not os.path.exists(output_dir):
                         os.makedirs(output_dir)
 

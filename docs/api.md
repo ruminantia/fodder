@@ -193,7 +193,7 @@ Splits audio file into smaller chunks if longer than specified duration.
 
 #### Volume Mounts
 - `./downloads:/app/downloads` - Temporary audio storage
-- `./transcriptions:/app/transcriptions` - Completed transcriptions
+- `./fodder:/app/fodder` - Completed transcriptions (fodder)
 - `./temp_chunks:/app/temp_chunks` - Audio chunks during processing
 - `./.env:/app/.env:ro` - Read-only environment configuration
 

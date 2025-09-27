@@ -37,7 +37,7 @@ fodder/
 │   └── audio_utils.py      # Audio processing utilities
 ├── docs/                   # This documentation
 ├── downloads/              # Temporary audio downloads
-├── transcriptions/         # Completed transcriptions
+├── fodder/         # Completed transcriptions
 ├── temp_chunks/           # Temporary audio chunks
 └── Configuration files
 ```

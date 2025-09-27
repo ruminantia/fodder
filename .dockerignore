@@ -103,8 +103,8 @@ temp_chunks/*
 !temp_chunks/.gitkeep
 downloads/*
 !downloads/.gitkeep
-transcriptions/*
-!transcriptions/.gitkeep
+fodder/*
+!fodder/.gitkeep
 
 # Configuration files
 .env

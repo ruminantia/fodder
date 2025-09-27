@@ -83,7 +83,7 @@ pip install -r requirements.txt
 # Configure and run
 cp .env.example .env
 # Edit .env with your credentials
-mkdir -p downloads transcriptions temp_chunks
+mkdir -p downloads fodder temp_chunks
 python main.py
 ```
 
@@ -124,12 +124,12 @@ fodder/
 │   └── audio_utils.py      # Audio processing utilities
 ├── docs/                   # Comprehensive documentation
 ├── downloads/              # Temporary audio downloads
-├── transcriptions/         # Completed transcriptions (persistent)
-├── temp_chunks/           # Temporary audio chunks
-├── docker-compose.yml     # Docker Compose configuration
-├── Dockerfile             # Docker image definition
-├── run-docker.sh          # Management script
-└── requirements.txt       # Python dependencies
+├── fodder/                 # Completed transcriptions (persistent)
+├── temp_chunks/            # Temporary audio chunks
+├── docker-compose.yml      # Docker Compose configuration
+├── Dockerfile              # Docker image definition
+├── run-docker.sh           # Management script
+└── requirements.txt        # Python dependencies
 ```
 
 ## ⚙️ Configuration
@@ -190,10 +190,10 @@ Comprehensive documentation is available in the [`docs/`](docs/README.md) direct
 **Permission errors:**
 ```bash
 # Ensure directories exist
-mkdir -p downloads transcriptions temp_chunks
+mkdir -p downloads fodder temp_chunks
 
 # Set correct permissions
-chmod 755 downloads transcriptions temp_chunks
+chmod 755 downloads fodder temp_chunks
 ```
 
 For detailed troubleshooting, see the [Troubleshooting Guide](docs/troubleshooting.md).

@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./downloads:/app/downloads
-      - ./transcriptions:/app/transcriptions
+      - ./fodder:/app/fodder
       - ./temp_chunks:/app/temp_chunks
       - ./.env:/app/.env:ro
     environment:

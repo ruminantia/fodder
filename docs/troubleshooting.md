@@ -201,8 +201,8 @@ Error: permission denied for volume mount
 **Fix**:
 ```bash
 # Ensure directories exist and have correct permissions
-mkdir -p downloads transcriptions temp_chunks
-chmod 755 downloads transcriptions temp_chunks
+mkdir -p downloads fodder temp_chunks
+chmod 755 downloads fodder temp_chunks
 ```
 
 **Issue: Container resource limits**
@@ -282,7 +282,7 @@ docker stats ruminantia-fodder
 
 # Check disk space
 df -h
-du -sh downloads/ transcriptions/ temp_chunks/
+du -sh downloads/ fodder/ temp_chunks/
 
 # Check memory usage
 free -h
@@ -382,7 +382,7 @@ chmod +x monitor_bot.sh
 ### Disaster Recovery
 ```bash
 # Backup important data
-tar -czf backup-$(date +%Y-%m-%d).tar.gz transcriptions/ .env
+tar -czf backup-$(date +%Y-%m-%d).tar.gz fodder/ .env
 
 # Restore from backup
 tar -xzf backup-2024-01-15.tar.gz

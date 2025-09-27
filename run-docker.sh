@@ -85,7 +85,7 @@ check_env_file() {
     fi
 
     # Ensure necessary data directories exist
-    for dir in downloads transcriptions temp_chunks; do
+    for dir in downloads fodder temp_chunks; do
         if [ ! -d "$dir" ]; then
             print_warning "Creating missing directory: $dir"
             mkdir -p "$dir"

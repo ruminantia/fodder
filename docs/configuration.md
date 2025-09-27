@@ -147,7 +147,7 @@ services:
     # ... existing configuration ...
     volumes:
       - ./downloads:/app/downloads:rw
-      - ./transcriptions:/app/transcriptions:rw
+      - ./fodder:/app/fodder:rw
       - ./temp_chunks:/app/temp_chunks:rw
       - ./.env:/app/.env:ro
 ```
@@ -446,7 +446,7 @@ echo $QWEN_API_KEY
 
 # Verify file permissions
 ls -la .env
-ls -la downloads/ transcriptions/ temp_chunks/
+ls -la downloads/ fodder/ temp_chunks/
 
 # Check Docker container status
 docker compose ps

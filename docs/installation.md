@@ -111,7 +111,7 @@ nano .env  # add your credentials
 
 ### Step 6: Create Necessary Directories
 ```bash
-mkdir -p downloads transcriptions temp_chunks
+mkdir -p downloads fodder temp_chunks
 ```
 
 ### Step 7: Start the Bot
@@ -144,7 +144,7 @@ services:
     # ... existing configuration ...
     volumes:
       - /custom/path/downloads:/app/downloads
-      - /custom/path/transcriptions:/app/transcriptions
+      - /custom/path/fodder:/app/fodder
 ```
 
 ### Advanced Docker Commands
