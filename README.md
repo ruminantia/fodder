@@ -7,7 +7,7 @@
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Qwen](https://img.shields.io/badge/Qwen3--Omni-AI%20Transcription-blue?style=for-the-badge)
 
-A sophisticated Discord bot for high-quality audio transcription using state-of-the-art AI with intelligent chunk-aware processing and context preservation.
+A sophisticated Discord bot for high-quality audio transcription using state-of-the-art AI with intelligent chunk-aware processing and context preservation. Features multi-container volume sharing for easy integration with other services.
 
 [📚 Documentation](docs/README.md)
 
@@ -36,6 +36,7 @@ A sophisticated Discord bot for high-quality audio transcription using state-of-
 ### 🐳 Production-Ready Deployment
 - **Docker Containerization**: Full container support with Docker Compose
 - **Persistent Storage**: Data preservation across container restarts
+- **Multi-Container Access**: Named volumes for easy integration with other services
 - **Auto-Restart**: Automatic recovery from failures
 - **Comprehensive Logging**: Detailed monitoring and debugging capabilities
 
@@ -129,6 +130,7 @@ fodder/
 ├── docker-compose.yml      # Docker Compose configuration
 ├── Dockerfile              # Docker image definition
 ├── run-docker.sh           # Management script
+├── test-volume-access.sh   # Volume access testing script
 └── requirements.txt        # Python dependencies
 ```
 
@@ -155,6 +157,42 @@ LOG_LEVEL=INFO                 # DEBUG, INFO, WARNING, ERROR
 ./run-docker.sh status    # Check container status
 ./run-docker.sh build     # Rebuild Docker image
 ./run-docker.sh help      # Show all commands
+```
+
+### Multi-Container Volume Setup
+The bot uses named volumes for persistent storage and multi-container access:
+
+```yaml
+# docker-compose.yml volume configuration
+volumes:
+  downloads:       # Bot-only: temporary audio downloads
+  transcriptions:  # Shared: completed transcriptions (read/write for bot, read-only for others)
+  temp:            # Bot-only: temporary audio chunks
+```
+
+**Access Patterns:**
+- **Discord Bot**: Read/write access to all volumes
+- **Other Containers**: Read-only access to `transcriptions` volume
+
+**Testing Volume Access:**
+```bash
+# Run comprehensive volume access tests
+./test-volume-access.sh
+
+# Manual testing
+docker-compose up -d
+docker exec ruminantia-fodder ls -la /app/fodder
+```
+
+**Integrating with Other Services:**
+```yaml
+# Example: Another container accessing transcriptions
+your-service:
+  image: your-app:latest
+  volumes:
+    - transcriptions:/path/to/transcriptions:ro
+  networks:
+    - fodder-network
 ```
 
 ## 📚 Documentation

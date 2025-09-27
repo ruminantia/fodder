@@ -6,9 +6,9 @@ services:
     container_name: ruminantia-fodder
     restart: unless-stopped
     volumes:
-      - ./downloads:/app/downloads
-      - ./fodder:/app/fodder
-      - ./temp_chunks:/app/temp_chunks
+      - downloads:/app/downloads
+      - transcriptions:/app/fodder
+      - temp:/app/temp_chunks
       - ./.env:/app/.env:ro
     environment:
       - PYTHONPATH=/app
@@ -16,6 +16,14 @@ services:
     tty: true
     networks:
       - fodder-network
+
+volumes:
+  downloads:
+    driver: local
+  transcriptions:
+    driver: local
+  temp:
+    driver: local
 
 networks:
   fodder-network:
